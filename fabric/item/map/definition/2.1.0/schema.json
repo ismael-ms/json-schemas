@@ -356,7 +356,7 @@
           },
           "type": {
             "type": "string",
-            "description": "Type of the layer source"
+            "description": "Source type. Currently supported values are 'geojson' (Lakehouse GeoJSON file), 'pmtiles' (vector or raster tile archive), 'cog' (Cloud Optimized GeoTIFF), 'kusto' (KQL query results), 'ontology' (Ontology entity data), 'connection' (external service accessed through a connection), and 'unknown' (source type not yet identified). This is distinct from the layer setting's vector or raster rendering category."
           },
           "options": {
             "type": ["object", "null"],
@@ -372,7 +372,7 @@
                 "description": "Defines custom properties that are calculated using expressions against all the points within each cluster and added to the properties of each cluster point",
                 "additionalProperties": {
                   "type": "array",
-                  "description": "An aggregate expression in the form [operator, mapExpression], or [operator, initialValue, mapExpression] when an initial value is supplied. The operator is applied across all points in the cluster to the values produced by the map expression. Supported operators are '+', '*', 'max' and 'min' for numbers, and 'all' and 'any' for booleans."
+                  "description": "An aggregate expression in the form [operator, mapExpression], or [operator, initialValue, mapExpression] when an initial value is supplied. The optional initialValue is a Boolean for Boolean operators or a number for numeric operators. The operator is applied across all points in the cluster to the values produced by the map expression. Supported operators are '+', '*', 'max' and 'min' for numbers, and 'all' and 'any' for booleans."
                 }
               },
               "clusterField": {
@@ -468,7 +468,7 @@
             "properties": {
               "type": {
                 "type": "string",
-                "description": "Layer type (vector or raster)",
+                "description": "Rendering category: 'vector' for feature-based layers or vector tiles, and 'raster' for imagery or raster tiles. Applies to connection-backed and non-connection-backed layers; it is not conditional on sourceLayer being 'connection'.",
                 "enum": ["vector", "raster"]
               },
               "visible": {
